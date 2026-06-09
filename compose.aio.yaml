@@ -1,0 +1,48 @@
+name: tessio-aio
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tessio
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tessio}
+      POSTGRES_DB: tessio
+    volumes:
+      - tessio_aio_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U tessio']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  app:
+    image: ghcr.io/tessio-ai/tessio-aio:${TESSIO_VERSION:-latest}
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgres://tessio:tessio@postgres:5432/tessio}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      SESSION_SECRET: ${SESSION_SECRET}
+      TESSIO_SECRET_KEY: ${TESSIO_SECRET_KEY}
+      TESSIO_ADMIN_EMAIL: ${TESSIO_ADMIN_EMAIL:-}
+      TESSIO_ADMIN_PASSWORD: ${TESSIO_ADMIN_PASSWORD:-}
+      TESSIO_ADMIN_NAME: ${TESSIO_ADMIN_NAME:-}
+      TESSIO_SITE_ADDRESS: ${TESSIO_SITE_ADDRESS:-:80}
+    ports:
+      - '${TESSIO_HTTP_PORT:-80}:80'
+    volumes:
+      - tessio_aio_data:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+volumes:
+  tessio_aio_pg:
+  tessio_aio_data:

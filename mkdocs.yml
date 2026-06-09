@@ -1,0 +1,61 @@
+site_name: Tessio
+site_description: Self-hosted ITSM platform — install & operations docs.
+repo_url: https://github.com/tessio-ai/tessio-community
+repo_name: tessio-ai/tessio-community
+docs_dir: docs/manual
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - search.suggest
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+validation:
+  nav:
+    omitted_files: ignore
+  links:
+    absolute_links: ignore
+    unrecognized_links: warn
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Install:
+      - Docker Compose: install/compose.md
+      - Single container: install/all-in-one.md
+      - Kubernetes (Helm): install/kubernetes.md
+  - Configuration: configuration.md
+  - Operations:
+      - Upgrading: operations/upgrading.md
+      - Backup & restore: operations/backup-restore.md
+      - TLS / HTTPS: operations/tls.md
+      - Troubleshooting: operations/troubleshooting.md
