@@ -33,5 +33,6 @@ helm install tessio oci://ghcr.io/tessio-ai/charts/tessio \
 
 ## Docs & support
 
-Full install, configuration, upgrade, and backup docs are in `docs/manual/` and published
-as a site (GitHub Pages). Questions and bug reports: use this repository's **Issues** tab.
+Full install, configuration, upgrade, and backup docs live in `docs/manual/` and are
+published at **<https://tessio-ai.github.io/tessio-community/>**. Questions and bug
+reports: use this repository's **Issues** tab.
