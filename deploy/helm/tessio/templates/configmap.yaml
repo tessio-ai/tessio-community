@@ -9,3 +9,4 @@ data:
   TESSIO_SITE_ADDRESS: {{ .Values.config.siteAddress | quote }}
   TESSIO_STORAGE_DIR: "/data/storage"
   REDIS_URL: {{ include "tessio.redisUrl" . | quote }}
+  RUNNER_URL: "http://{{ include "tessio.fullname" . }}-runner:3100"

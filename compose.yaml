@@ -68,6 +68,7 @@ services:
       DATABASE_URL: ${DATABASE_URL}
       REDIS_URL: ${REDIS_URL}
       TESSIO_SECRET_KEY: ${TESSIO_SECRET_KEY}
+      RUNNER_URL: http://runner:3100
     depends_on:
       postgres:
         condition: service_healthy
