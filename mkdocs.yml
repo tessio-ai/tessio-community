@@ -30,9 +30,12 @@ theme:
   features:
     - navigation.sections
     - navigation.top
+    - navigation.footer
     - navigation.instant
     - search.suggest
     - content.code.copy
+
+copyright: "© 2026 Tessio. Self-hosted, on your terms."
 
 extra_css:
   - stylesheets/tessio.css
