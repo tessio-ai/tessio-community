@@ -42,6 +42,7 @@ extra_css:
 
 markdown_extensions:
   - admonition
+  - attr_list
   - tables
   - toc:
       permalink: true
@@ -65,8 +66,10 @@ nav:
       - Single container: install/all-in-one.md
       - Kubernetes (Helm): install/kubernetes.md
   - Configuration: configuration.md
+  - AI & privacy: ai-privacy.md
   - Operations:
       - Upgrading: operations/upgrading.md
       - Backup & restore: operations/backup-restore.md
       - TLS / HTTPS: operations/tls.md
       - Troubleshooting: operations/troubleshooting.md
+      - Email: operations/email.md

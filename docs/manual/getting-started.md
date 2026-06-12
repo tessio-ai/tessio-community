@@ -27,6 +27,18 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 Paste the first into `SESSION_SECRET` and the second into `TESSIO_SECRET_KEY`. To create
 the first admin automatically, also set `TESSIO_ADMIN_EMAIL` and `TESSIO_ADMIN_PASSWORD`.
 
+The example file also ships `CHANGE_ME_*` placeholders for the bundled datastores and the
+script runner. Replace them with strong values before exposing the instance:
+
+```bash
+openssl rand -hex 24   # POSTGRES_PASSWORD — also update it inside DATABASE_URL
+openssl rand -hex 24   # REDIS_PASSWORD    — also update it inside REDIS_URL
+openssl rand -hex 32   # RUNNER_TOKEN      — authenticates the script runner
+```
+
+See [Configuration](configuration.md#hardening-the-datastores-recommended-for-production)
+for what each one does.
+
 ## 3. Start
 
 ```bash
