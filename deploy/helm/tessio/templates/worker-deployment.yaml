@@ -48,6 +48,10 @@ spec:
             - name: TESSIO_SECRET_KEY
               valueFrom:
                 secretKeyRef: { name: {{ include "tessio.secretName" . }}, key: TESSIO_SECRET_KEY }
+            # Presented to the runner's /run so script execution stays authenticated.
+            - name: RUNNER_TOKEN
+              valueFrom:
+                secretKeyRef: { name: {{ include "tessio.secretName" . }}, key: RUNNER_TOKEN }
           resources: {{- toYaml .Values.worker.resources | nindent 12 }}
       {{- with .Values.worker.nodeSelector }}
       nodeSelector: {{- toYaml . | nindent 8 }}

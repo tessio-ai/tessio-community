@@ -21,6 +21,7 @@ secrets:
   existingSecret: ""   # if set, reuse this Secret instead of managing one
   sessionSecret: ""    # cookie signing; generated if empty
   secretKey: ""        # base64 32-byte key for provider-key encryption; generated if empty
+  runnerToken: ""      # worker→runner shared token that locks the script runner's /run; generated if empty
 
 # First-admin seed (optional; runs in the migrate Job when both email+password set).
 admin:
